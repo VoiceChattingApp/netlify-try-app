@@ -1,0 +1,23 @@
+
+
+.dropdown-menu{
+  display: block;
+  position: absolute;
+  right:2%;
+  z-index: 50;
+  cursor: pointer;
+  background-color: white;
+  border:5px solid #32e17c;
+  border-radius: 15px;
+}
+
+.dropdown-menu ul {
+  display: block;
+  margin: 10px;
+  color:black;
+}
+
+.dropdown-menu ul li {
+  width: 150px;
+  padding: 10px;
+}
