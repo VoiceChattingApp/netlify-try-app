@@ -13,6 +13,7 @@
     "@testing-library/user-event": "^12.8.3",
     "antd": "^4.18.2",
     "axios": "^0.24.0",
+    "bootstrap-switch-button-react": "^1.2.0",
     "font-awesome": "^4.7.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -27,7 +28,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "set \"CI=false\" && react-scripts build",
     "serve": "serve build",
     "eject": "react-scripts eject"
   },
