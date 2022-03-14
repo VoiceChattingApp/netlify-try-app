@@ -30,7 +30,9 @@ const ChatList = (props) => {
         }
       )
       .then((response) => {
+        console.log(response.data);
         setallChats(response.data);
+        props.setnotifyuser(response.data);
         authCtx.setuserhandler(response.data);
       });
   };
@@ -142,8 +144,8 @@ const ChatList = (props) => {
         </div>
       </div>
       <div className={classes.chatlist__items}>
-        {allChats.length > 0 &&
-          allChats
+        {props.notifyuser.length > 0 &&
+          props.notifyuser
             .filter((val) => {
               if (searchval === "") {
                 return val;
@@ -157,6 +159,8 @@ const ChatList = (props) => {
               
               return (
                 <ChatListItems
+                  notifyuser={props.notifyuser}
+                  setnotifyuser={props.setnotifyuser}
                   setpersonfunc={props.setpersonfunc}
                   key={index}
                   setindexfunc={props.setindexfunc}
@@ -170,6 +174,7 @@ const ChatList = (props) => {
                   active={item.active ? "active" : ""}
                   isOnline={item.isOnline ? "active" : ""}
                   image={image}
+                  notifiction={item.unread}
                   deleteuserid={deleteuserid}
                   setdeleteuserid={setdeleteuserid}
                 />

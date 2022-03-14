@@ -15,6 +15,7 @@ import ChatItem from "./ChatItem";
 import axios from "axios";
 import { PushToTalkButton } from "@speechly/react-ui";
 import { useSpeechContext } from "@speechly/react-client";
+import BootstrapSwitchButton from 'bootstrap-switch-button-react'
 var stompClient = null;
 const ChatContent = (props) => {
   const messagesEndRef = useRef(null);
@@ -26,9 +27,7 @@ const ChatContent = (props) => {
   const [activeContact, setActiveContact] = useRecoilState(chatActiveContact);
   const { segment } = useSpeechContext();
 
-  useEffect(() => {
-    return () => {};
-  }, []);
+  
   useEffect(() => {}, [messages]);
 
   useEffect(() => {
@@ -96,7 +95,10 @@ const ChatContent = (props) => {
     const active = JSON.parse(
       sessionStorage.getItem("recoil-persist")
     ).chatActiveContact;
-
+    console.log("hhhhhh");
+    console.log(notification);
+    console.log("active");
+    console.log(active);
     if (active.email === notification.senderId) {
       const url =
         "https://chat-lg.azurewebsites.net/messages/" +
@@ -128,6 +130,27 @@ const ChatContent = (props) => {
         draggable: true,
         progress: undefined,
       });
+
+        var url = "https://chat-lg.azurewebsites.net/contacts/"+currentUser.username+"/"+notification.senderId+"/1";
+        axios
+      .post(url)
+      .then((result) => {
+        
+      })
+      .catch((err) => {window.alert("error aagya")});
+      let temparr=[...props.notifyuser];
+      for(var i=0;i<temparr.length;i++)
+      {
+        if(temparr[i].username===notification.senderId)
+        {
+          temparr[i].unread++;
+        }
+      }
+     console.log("auth");
+     console.log(authCtx.users);
+     props.setnotifyuser(temparr);
+     console.log(notification);
+
     }
   };
   const [showthreedots, setshowthreedots] = useState(false);
@@ -209,7 +232,8 @@ const[image,setimage]=useState("https://cdn.pixabay.com/photo/2015/10/05/22/37/b
               isOnline="active"
               image={image}
             />
-            <div onClick={profilesectionhandler}>{props.nameofperson}</div>
+            <div onClick={profilesectionhandler} style={{cursor:"pointer"}}>{props.nameofperson}</div>
+            
           </div>
         </div>
 

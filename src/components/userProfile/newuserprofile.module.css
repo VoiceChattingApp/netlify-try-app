@@ -16,13 +16,18 @@
   display: flex;
   justify-content: center;
 }
+.padding{
+  padding: 20px;
+  font-size: medium;
+  margin-left: 10px;
+}
 .image-upload{
   margin: auto;
   width: 200px;
   height: 50px;
   color: white;
   border-radius: 10px;
-  background-color: black;
+  
   text-align: center;
   cursor: pointer;
 }
@@ -96,6 +101,9 @@
   max-width: 60%;
   margin-bottom: 10px;
 }
+.black{
+  color:black;
+}
 .buttonflex:hover {
   background-color: transparent;
   color: red;
@@ -159,7 +167,7 @@
 
 }
 .card-info-margin input{
-  width:70%;
+  width:80%;
 }
 
 .fab{
@@ -241,7 +249,7 @@
 	height: 50px;
   color: white;
   border-radius: 10px;
-  background-color: black;
+  
   text-align: center;
   cursor: pointer;
 }

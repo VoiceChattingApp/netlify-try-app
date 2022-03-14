@@ -4,7 +4,9 @@ import "font-awesome/css/font-awesome.min.css";
 import { useRecoilValue } from "recoil";
 import { loggedInUser } from "../../atom/globalState";
 import axios from "axios";
+import { toast } from "react-toastify";
 
+import "react-toastify/dist/ReactToastify.css";
 const Newuserprofile = (props) => {
   const [editstate, seteditstate] = useState(false);
   const [showpara, setshowpara] = useState(false);
@@ -70,6 +72,8 @@ const Newuserprofile = (props) => {
   const submitchangeshandler = (e) => {
     e.preventDefault();
     console.log(status);
+
+
     setshowpara(false);
     seteditstate(false);
   };
@@ -99,6 +103,7 @@ const Newuserprofile = (props) => {
               objectFit: "fill",
               backgroundSize: "cover",
               backgroundRepeat: "no-repeat",
+              backgroundPosition:"center center",
             }}
           >
             <input
@@ -113,7 +118,8 @@ const Newuserprofile = (props) => {
               {props.curindex === -3 &&
                 props.user.username === currentUser.username && (
                   <label className={classes["image-upload"]} htmlFor="input">
-                    <i className={classes["material-icons"]}>Add_photo</i>
+                    
+                    <i className="fa fa-camera fa-2x " style={{color:"black"}}></i>
                   </label>
                 )}
             </div>
@@ -132,8 +138,9 @@ const Newuserprofile = (props) => {
           </h1>
           <div style={{ display: "flex" }}>
             {showpara && (
-              <input
+              <input className={classes.padding}
                 type="text"
+                maxlength="56"
                 value={status}
                 onChange={changestatus}
                 ref={inputRef}

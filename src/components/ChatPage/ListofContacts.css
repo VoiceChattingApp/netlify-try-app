@@ -97,6 +97,13 @@
   object-fit: cover;
 
 }
+.notify{
+  background-color: green;
+  border-radius:30%;
+  margin:auto;
+  padding: 5px;
+  font-size: 10px;
+}
 .chatlist__item. userMeta {
   display: flex;
   justify-content: space-between;

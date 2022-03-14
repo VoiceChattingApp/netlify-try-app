@@ -17,6 +17,7 @@ const ChatBody = () => {
     firstName: "",
     lastName: "",
   });
+  const [notifyuser,setnotifyuser]=useState([]);
   const [indexwithname, setindexwithname] = useState({
     username: "",
     firstName: "",
@@ -49,6 +50,7 @@ const ChatBody = () => {
   return (
     <div className={classes.main__chatbody}>
       <ListofContacts
+      setnotifyuser={setnotifyuser}
         setindexwithname={setindexwithname}
         updatecontacts={updatecontacts}
         adduserindex={setuserindex}
@@ -56,12 +58,15 @@ const ChatBody = () => {
         curindex={index}
         setemailfunc={setemailfunc}
         setindexfunc={setindexfunc}
+        notifyuser={notifyuser}
       />
       
       {index === -3 && <Newuserprofile curindex={index} user={indexwithname} />}
 
       {index !== -1 && index !== -2 && index !== -3 && (
         <ChatContent
+          notifyuser={notifyuser}
+          setnotifyuser={setnotifyuser}
           setindexfunc={setindexfunc}
           nameofperson={nameofperson}
           email={email}
@@ -78,7 +83,7 @@ const ChatBody = () => {
           setupdatecontacts={setupdatecontacts}
         />
       )}
-      {index === -4 && <ThreeDots />}
+      
     </div>
   );
 };
