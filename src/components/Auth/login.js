@@ -36,7 +36,7 @@ const Login = () => {
     };
 
     axios
-      .post("https://chat-lg.azurewebsites.net/register", userData)
+      .post("https://backend-for-chat-app.herokuapp.com/register", userData)
       .then((response) => {
         toast.success(
           "User created successfully!!! Check your email to verify your email address",
@@ -77,7 +77,7 @@ const Login = () => {
     };
 
     axios
-      .post("https://chat-lg.azurewebsites.net/authenticate", userData)
+      .post("https://backend-for-chat-app.herokuapp.com/authenticate", userData)
       .then((response) => {
         authCtx.login(response.data.token);
 

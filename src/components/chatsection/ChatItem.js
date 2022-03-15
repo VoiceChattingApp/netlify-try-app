@@ -1,7 +1,18 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import classes from "./chatContent.module.css";
-
+import { useRecoilValue, useRecoilState } from "recoil";
+import {
+  chatActiveContact,
+  chatMessages,
+  loggedInUser,
+} from "../../atom/globalState";
 const ChatItem = (props) => {
+  const [tp,settp]=useState(1);
+  const [activeContact, setActiveContact] = useRecoilState(chatActiveContact);
+  console.log("key");
+  console.log(activeContact.email);
+  console.log(props.sender);
+  console.log(props.unread);
   if (props.deletemsgid === props.id) {
   }
   let p = props.timestamp.toString().substr(11, 11);
@@ -14,6 +25,9 @@ const ChatItem = (props) => {
   if (hours >= 24) {
     hours = hours - 24;
   }
+  useEffect(()=>{
+    settp(0);
+  },[])
   let monthname;
   const months = [
     "Jan",
@@ -56,7 +70,7 @@ const ChatItem = (props) => {
     <div
       className={`${classes.chat__item} ${
         props.sender !== props.currentUser ? classes.other : " "
-      }`}
+      } ${parseInt(props.animationDelay)-2>=parseInt(props.len)-parseInt(props.unread)&&props.sender !== props.currentUser? classes.highlight: " "}`}
     >
       <div className={classes.chat__item__content}>
         <div className={classes.chat__msg}>{props.msg}</div>

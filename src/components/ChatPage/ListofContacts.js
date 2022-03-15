@@ -22,7 +22,7 @@ const ChatList = (props) => {
     console.log(currentUser);
     axios
       .get(
-        "https://chat-lg.azurewebsites.net/contacts/" + currentUser.username,
+        "https://backend-for-chat-app.herokuapp.com/contacts/" + currentUser.username,
         {
           headers: {
             Authorization: "Bearer" + authCtx.token,
@@ -69,7 +69,7 @@ const ChatList = (props) => {
         console.log("j==0");
         axios
           .post(
-            "https://chat-lg.azurewebsites.net/contacts/" +
+            "https://backend-for-chat-app.herokuapp.com/contacts/" +
               currentUser.username,
             props.updatecontacts
           )

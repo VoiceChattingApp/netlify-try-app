@@ -9,6 +9,8 @@ import {
   loggedInUser,
 } from "../../atom/globalState";
 const ChatListItems = (props) => {
+
+  
   const currentUser = useRecoilValue(loggedInUser);
   const[count,setcount]=useState(100);
   const [activeclass, setactiveclass] = useState(false);
@@ -30,23 +32,7 @@ const ChatListItems = (props) => {
     //props.setpersonfunc
     setcount(0);
    
-    var url = "https://chat-lg.azurewebsites.net/contacts/"+currentUser.username+"/"+props.userName+"/0";
-        axios
-      .post(url)
-      .then((result) => {
-        
-      })
-      .catch((err) => {window.alert("error aagya")}); 
-     let temparr=[...props.notifyuser];
-      for(var i=0;i<temparr.length;i++)
-      {
-        if(temparr[i].username===props.userName)
-        {
-          temparr[i].unread=0;
-        }
-      }
-     
-    props.setnotifyuser(temparr);
+    
     props.setindexwithname({
       username: props.userName,
       firstName: props.name,
@@ -56,7 +42,7 @@ const ChatListItems = (props) => {
   console.log("image obtained");
   console.log(props.image);
   useEffect(()=>{
-  var url = "https://chat-lg.azurewebsites.net/photos/" + props.userName;
+  var url = "https://backend-for-chat-app.herokuapp.com/photos/" + props.userName;
     axios
       .get(url)
       .then((result) => {

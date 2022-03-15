@@ -29,7 +29,7 @@ const Adduser = (props) => {
     if (searchval.includes("@") && searchval.includes(".com")) {
       //search for email represented by searchval in database of all users
 
-      const url = "https://chat-lg.azurewebsites.net/user/" + searchval;
+      const url = "https://backend-for-chat-app.herokuapp.com/user/" + searchval;
       axios.get(url).then((response) => {
         if (response.data) {
           setuser({

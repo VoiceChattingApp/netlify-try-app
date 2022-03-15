@@ -18,7 +18,7 @@ const Newuserprofile = (props) => {
   useEffect(() => {
     if (showpara) inputRef.current.focus();
 
-    var url = "https://chat-lg.azurewebsites.net/photos/" + props.user.username;
+    var url = "https://backend-for-chat-app.herokuapp.com/photos/" + props.user.username;
     axios
       .get(url)
       .then((result) => {
@@ -48,7 +48,7 @@ const Newuserprofile = (props) => {
     if (file && file.type.match("image.*"))
       reader.readAsDataURL(e.target.files[0]);
     var url =
-      "https://chat-lg.azurewebsites.net/photos/" + currentUser.username;
+      "https://backend-for-chat-app.herokuapp.com/photos/" + currentUser.username;
     let formdata = new FormData();
     formdata.append("image", file);
     axios

@@ -7,6 +7,9 @@
   max-width: 75%;
   min-width: 75%;
 }
+.highlight{
+  background-color: #32CD32;
+}
 .endAdornment {
   position: absolute;
   right: 0.3rem;

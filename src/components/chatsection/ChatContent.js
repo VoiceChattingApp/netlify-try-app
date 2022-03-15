@@ -26,6 +26,7 @@ const ChatContent = (props) => {
   const [messages, setMessages] = useRecoilState(chatMessages);
   const [activeContact, setActiveContact] = useRecoilState(chatActiveContact);
   const { segment } = useSpeechContext();
+  const[unread,setunread]=useState(0);
 
   
   useEffect(() => {}, [messages]);
@@ -45,6 +46,7 @@ const ChatContent = (props) => {
         name: props.nameofperson,
         email: authCtx.users[props.index].username,
       });
+     
       setmessagestate("");
     }
   }, [props.nameofperson, props.index]);
@@ -53,7 +55,7 @@ const ChatContent = (props) => {
       return;
     }
     const url =
-      "https://chat-lg.azurewebsites.net/messages/" +
+      "https://backend-for-chat-app.herokuapp.com/messages/" +
       activeContact.email +
       "/" +
       currentUser.username;
@@ -73,10 +75,50 @@ const ChatContent = (props) => {
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
+
+useEffect(()=>{
+    axios
+      .get(
+        "https://backend-for-chat-app.herokuapp.com/contacts/" + currentUser.username,
+        {
+          headers: {
+            Authorization: "Bearer" + authCtx.token,
+          },
+        }
+      )
+      .then((response) => {
+        for(var t=0;t<response.data.length;t++)
+        {
+          if(response.data[t].username===activeContact.email)
+          {
+            setunread(response.data[t].unread);
+          }
+        }
+      });
+      var url = "https://backend-for-chat-app.herokuapp.com/contacts/"+currentUser.username+"/"+activeContact.email+"/0";
+        axios
+      .post(url)
+      .then((result) => {
+        
+      })
+      .catch((err) => {window.alert("error aagya")}); 
+     let temparr=[...props.notifyuser];
+      for(var i=0;i<temparr.length;i++)
+      {
+        if(temparr[i].username===activeContact.email)
+        {
+          temparr[i].unread=0;
+        }
+      }
+    setunread(0);
+    props.setnotifyuser(temparr);
+},[activeContact.email])
+
+
   const connect = () => {
     const Stomp = require("stompjs");
     var SockJS = require("sockjs-client");
-    SockJS = new SockJS("https://chat-lg.azurewebsites.net/ws");
+    SockJS = new SockJS("https://backend-for-chat-app.herokuapp.com/ws");
     stompClient = Stomp.over(SockJS);
     stompClient.connect({}, onConnected, onError);
   };
@@ -101,7 +143,7 @@ const ChatContent = (props) => {
     console.log(active);
     if (active.email === notification.senderId) {
       const url =
-        "https://chat-lg.azurewebsites.net/messages/" +
+        "https://backend-for-chat-app.herokuapp.com/messages/" +
         notification.senderId +
         "/" +
         currentUser.username;
@@ -131,7 +173,7 @@ const ChatContent = (props) => {
         progress: undefined,
       });
 
-        var url = "https://chat-lg.azurewebsites.net/contacts/"+currentUser.username+"/"+notification.senderId+"/1";
+        var url = "https://backend-for-chat-app.herokuapp.com/contacts/"+currentUser.username+"/"+notification.senderId+"/1";
         axios
       .post(url)
       .then((result) => {
@@ -212,7 +254,7 @@ const ChatContent = (props) => {
   };
 const[image,setimage]=useState("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png");
  useEffect(()=>{
-  var url = "https://chat-lg.azurewebsites.net/photos/" + props.indexwithname.username;
+  var url = "https://backend-for-chat-app.herokuapp.com/photos/" + props.indexwithname.username;
     axios
       .get(url)
       .then((result) => {
@@ -256,6 +298,8 @@ const[image,setimage]=useState("https://cdn.pixabay.com/photo/2015/10/05/22/37/b
           {messages.map((itm, index) => {
             return (
               <ChatItem
+                unread={unread}
+                len={messages.length}
                 key={index}
                 animationDelay={index + 2}
                 id={itm.id}
