@@ -146,7 +146,7 @@
 }
 .active{
 
-  background-color: rgb(255, 0, 118);
+  background-color: orange;
 }
 .isOnline.active {
   background-color: yellow;

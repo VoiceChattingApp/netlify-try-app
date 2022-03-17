@@ -22,6 +22,7 @@ const ChatItem = (props) => {
     hours++;
     min -= 60;
   }
+  
   if (hours >= 24) {
     hours = hours - 24;
   }

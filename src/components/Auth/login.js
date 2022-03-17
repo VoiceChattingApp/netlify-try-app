@@ -6,7 +6,7 @@ import AuthContext from "../store/auth-context";
 import classes from "./login.module.css";
 import { loggedInUser } from "../../atom/globalState";
 import { toast } from "react-toastify";
-
+ 
 import "react-toastify/dist/ReactToastify.css";
 import "font-awesome/css/font-awesome.min.css";
 const Login = () => {
@@ -123,7 +123,7 @@ const Login = () => {
           className={`${classes["form-container"]} ${classes["sign-up-container"]}`}
         >
           <form className={classes.form} onSubmit={submitHandlerSignup}>
-            <h1>Create Account</h1>
+            <h1 style={{position:"fixed",top:"100px"}}>Create Account</h1>
             <div className={classes["social-container"]}>
               {/* <a href="#" className={classes.social}>
                 <i className="fa-facebook-f"></i>
@@ -142,6 +142,7 @@ const Login = () => {
               ref={firstName}
               required
               placeholder="First Name"
+              style={{position:"fixed",width:"50%",top:"150px"}}
             />
             <input
               className={classes.input}
@@ -149,6 +150,7 @@ const Login = () => {
               ref={lastName}
               required
               placeholder="Last Name"
+               style={{position:"fixed",width:"50%",top:"200px"}}
             />
             <input
               className={classes.input}
@@ -157,6 +159,7 @@ const Login = () => {
               ref={emailName}
               required
               placeholder="Email"
+               style={{position:"fixed",width:"50%",top:"250px"}}
             />
             <input
               className={classes.input}
@@ -165,9 +168,10 @@ const Login = () => {
               ref={passwordsignup}
               required
               placeholder="Password"
+               style={{position:"fixed",width:"50%",top:"300px"}}
             />
-            {!loading && <button className={classes.button}>Sign Up</button>}
-            {loading && <div className={classes["lds-dual-ring"]}></div>}
+            {!loading && <button className={classes.button}  style={{position:"fixed",top:"370px"}}>Sign Up</button>}
+            {loading && <div className={classes["lds-dual-ring"]} style={{position:"fixed",top:"370px"}}></div>}
           </form>
         </div>
 
@@ -175,7 +179,7 @@ const Login = () => {
           className={`${classes["form-container"]} ${classes["sign-in-container"]}`}
         >
           <form className={classes.form} onSubmit={submitHandlerLogin}>
-            <h1>Sign in</h1>
+            <h1 style={{position:"fixed",top:"170px"}}>Sign in</h1>
             <div className={classes["social-container"]}>
               {/* <a href="#" className={classes.social}>
                 <i className="fab fa-facebook-f"></i>
@@ -194,6 +198,7 @@ const Login = () => {
               ref={userName}
               required
               placeholder="Email"
+              style={{position:"fixed",width:"18%",top:"220px"}}
             />
             <input
               className={classes.input}
@@ -202,10 +207,11 @@ const Login = () => {
               ref={password}
               required
               placeholder="Password"
+              style={{position:"fixed",width:"18%"}}
             />{" "}
-            <a href="#">Forgot your password?</a>
-            {!loading && <button className={classes.button}>Sign In</button>}
-            {loading && <div className={classes["lds-dual-ring"]}></div>}
+            
+            {!loading && <button className={classes.button} style={{position:"fixed",top:"330px"}} >Sign In</button>}
+            {loading && <div className={classes["lds-dual-ring"] }></div>}
           </form>
         </div>
 

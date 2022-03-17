@@ -75,11 +75,15 @@ const Adduser = (props) => {
       <form>
         <div className={classes.form}>
           <div className={classes.chatList__search}>
-            <div className={classes.search_wrap}>
+            <div className={`${
+            searchval.length>0
+              ? classes.search_wrap__cross
+              : classes.search_wrap
+          }`}>
               {searchval.length > 0 && (
                 <i
                   className="fa fa-times"
-                  style={{ paddingLeft: "5%" }}
+                  style={{ paddingLeft: "5%" ,maxWidth:"10%" ,"minWidth":"10%" }}
                   onClick={setempty}
                 ></i>
               )}
@@ -90,9 +94,9 @@ const Adduser = (props) => {
                 onChange={setsearchvalfunc}
                 required
               />
-              <button className={classes.searchbtn} onClick={submithandler}>
-                <i className="fa fa-search" style={{ color: "white" }}></i>
-              </button>
+             
+                <i onClick={submithandler} className="fa fa-search" style={{ color: "white" }}></i>
+             
             </div>
           </div>
         </div>

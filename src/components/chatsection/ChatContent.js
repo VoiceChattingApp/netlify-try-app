@@ -12,6 +12,7 @@ import classes from "./chatContent.module.css";
 import Avatar from "../ChatPage/Avatar";
 import AuthContext from "../store/auth-context";
 import ChatItem from "./ChatItem";
+
 import axios from "axios";
 import { PushToTalkButton } from "@speechly/react-ui";
 import { useSpeechContext } from "@speechly/react-client";
@@ -28,7 +29,7 @@ const ChatContent = (props) => {
   const { segment } = useSpeechContext();
   const[unread,setunread]=useState(0);
 
-  
+ 
   useEffect(() => {}, [messages]);
 
   useEffect(() => {
@@ -208,7 +209,7 @@ useEffect(()=>{
         recipientId: activeContact.email,
         senderName: currentUser.firstName,
         recipientName: activeContact.name,
-        content: messagestate,
+        content: messagestate.toLowerCase(),
         timestamp: new Date(),
       };
       stompClient.send("/app/chat", {}, JSON.stringify(message));
@@ -324,7 +325,7 @@ const[image,setimage]=useState("https://cdn.pixabay.com/photo/2015/10/05/22/37/b
             placeholder="Type a message here"
             onKeyDown={onKeyDownHandler}
             onChange={changeinstate}
-            value={messagestate}
+            value={messagestate.toLowerCase()}
           />
 
           <PushToTalkButton intro="" tapToTalkTime="60000" size="2.5rem" />

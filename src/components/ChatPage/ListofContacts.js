@@ -122,11 +122,15 @@ const ChatList = (props) => {
         <h2>List of Contacts</h2>
       </div>
       <div className={classes.chatList__search}>
-        <div className={classes.search_wrap}>
+        <div className={`${
+            searchval.length>0
+              ? classes.search_wrap__cross
+              : classes.search_wrap
+          }`}>
           {searchval.length > 0 && (
             <i
               className="fa fa-times"
-              style={{ paddingLeft: "5%" }}
+              style={{ paddingLeft: "5%" ,minWidth:"12%" , maxWidth:"12%"}}
               onClick={setempty}
             ></i>
           )}
@@ -138,9 +142,9 @@ const ChatList = (props) => {
             value={searchval}
           />
 
-          <button className={classes.searchbtn}>
+         
             <i className="fa fa-search"></i>
-          </button>
+        
         </div>
       </div>
       <div className={classes.chatlist__items}>

@@ -57,7 +57,7 @@ const ChatListItems = (props) => {
     <div
       className={`chatlist__item ${
         props.curindex === props.index ? "active" : ""
-      } ` } 
+      } ` } onClick={setindexfun}
     >
       <Avatar
         image={image}
