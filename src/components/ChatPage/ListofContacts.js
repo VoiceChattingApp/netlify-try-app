@@ -141,10 +141,6 @@ const ChatList = (props) => {
             required
             value={searchval}
           />
-
-         
-            <i className="fa fa-search"></i>
-        
         </div>
       </div>
       <div className={classes.chatlist__items}>

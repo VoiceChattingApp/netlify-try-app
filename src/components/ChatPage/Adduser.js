@@ -59,6 +59,11 @@ const Adduser = (props) => {
       return;
     }
   };
+
+  
+  const onKeyDownHandler = (e) => {
+    if (e.keyCode === 13) submithandler(e);
+  };
   const updatecontacts = (e) => {
     props.setupdatecontacts({
       username: e.username,
@@ -91,11 +96,12 @@ const Adduser = (props) => {
                 type="email"
                 placeholder="Search Here"
                 value={searchval}
+                onKeyDown={onKeyDownHandler}
                 onChange={setsearchvalfunc}
                 required
               />
              
-                <i onClick={submithandler} className="fa fa-search" style={{ color: "white" }}></i>
+                <i onClick={submithandler} className="fa fa-search" style={{ color: "white", paddingLeft: "5%" ,maxWidth:"10%" ,"minWidth":"10%" ,paddingRight:"5%"}}></i>
              
             </div>
           </div>

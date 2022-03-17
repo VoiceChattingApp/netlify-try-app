@@ -62,8 +62,8 @@
   font-size: medium;
   color:white;
   outline: none;
-  max-width: 95%;
-  min-width: 95%;
+  max-width: 86%;
+  min-width: 86%;
   padding-right: 0;
 }
 .search_wrap__cross {
@@ -82,8 +82,8 @@
   font-size: medium;
   color:white;
   outline: none;
-  min-width: 85%;
-  max-width: 85%;
+  min-width: 77%;
+  max-width: 77%;
   padding-right: 0;
 }
 .searchbtn {
