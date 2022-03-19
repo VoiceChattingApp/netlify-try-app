@@ -7,19 +7,18 @@ import ChatListItems from "./ChatListItems";
 import "font-awesome/css/font-awesome.min.css";
 import AuthContext from "../store/auth-context";
 import { toast } from "react-toastify";
-
+import AuthContext1 from "../store/second-auth";
 import "react-toastify/dist/ReactToastify.css";
 const allChatUsers = [];
 const ChatList = (props) => {
   const authCtx = useContext(AuthContext);
   const currentUser = useRecoilValue(loggedInUser);
-
+  const authCtx1=useContext(AuthContext1);
   const [allChats, setallChats] = useState(allChatUsers);
   const [deleteuserid, setdeleteuserid] = useState(-1);
   const [searchval, setsearchval] = useState("");
   const loadContacts = () => {
-    console.log("load");
-    console.log(currentUser);
+   
     axios
       .get(
         "https://backend-for-chat-app.herokuapp.com/contacts/" + currentUser.username,
@@ -30,9 +29,10 @@ const ChatList = (props) => {
         }
       )
       .then((response) => {
-        console.log(response.data);
+       
         setallChats(response.data);
         props.setnotifyuser(response.data);
+        
         authCtx.setuserhandler(response.data);
       });
   };
@@ -66,7 +66,7 @@ const ChatList = (props) => {
 
       //paste the func of adding to the database the props.updateuser and the call loadcontacts();
       if (j === 0) {
-        console.log("j==0");
+        
         axios
           .post(
             "https://backend-for-chat-app.herokuapp.com/contacts/" +
@@ -177,6 +177,7 @@ const ChatList = (props) => {
                   notifiction={item.unread}
                   deleteuserid={deleteuserid}
                   setdeleteuserid={setdeleteuserid}
+                  onlinearray={authCtx1.users}
                 />
               );
             })}

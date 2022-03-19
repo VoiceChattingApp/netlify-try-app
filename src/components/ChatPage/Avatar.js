@@ -6,6 +6,7 @@ const Avatar=(props)=> {
       <div className="avatar">
         <div className="avatar-img">
           <img src={props.image} alt="#" />
+          <span className={`isOnline ${props.isOnline}`}></span>
         </div>
         
       </div>

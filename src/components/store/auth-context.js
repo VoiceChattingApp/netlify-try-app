@@ -20,9 +20,13 @@ export const AuthContextProvider = (props) => {
     setToken(token);
   };
   const setuserhandler=(arr)=>{
-   setuser(arr);
+   console.log("jk");
+   console.log(users);
+   setuser([...users,...arr]);
+   console.log(users);
   }
   const logoutHandler = () => {
+    console.log("hjh");
     localStorage.removeItem("token");
     setToken(null);
   };

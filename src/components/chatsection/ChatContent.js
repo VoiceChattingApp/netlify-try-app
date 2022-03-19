@@ -11,6 +11,7 @@ import "react-toastify/dist/ReactToastify.css";
 import classes from "./chatContent.module.css";
 import Avatar from "../ChatPage/Avatar";
 import AuthContext from "../store/auth-context";
+import AuthContext1 from "../store/second-auth";
 import ChatItem from "./ChatItem";
 
 import axios from "axios";
@@ -21,6 +22,7 @@ var stompClient = null;
 const ChatContent = (props) => {
   const messagesEndRef = useRef(null);
   const authCtx = useContext(AuthContext);
+  const authCtx1=useContext(AuthContext1);
   const currentUser = useRecoilValue(loggedInUser);
   const [deletemsgid, setdeletemsgid] = useState(-1);
   const [messagestate, setmessagestate] = useState("");
@@ -28,10 +30,14 @@ const ChatContent = (props) => {
   const [activeContact, setActiveContact] = useRecoilState(chatActiveContact);
   const { segment } = useSpeechContext();
   const[unread,setunread]=useState(0);
-
+  const[dummycount,setdummycount]=useState(0);
  
   useEffect(() => {}, [messages]);
-
+  useEffect(()=>{
+   return ()=>{
+    window.alert("leaving chatconte");
+   }
+  },[])
   useEffect(() => {
     if (localStorage.getItem("token") !== null) {
       stompClient == null && connect();
@@ -138,10 +144,12 @@ useEffect(()=>{
     const active = JSON.parse(
       sessionStorage.getItem("recoil-persist")
     ).chatActiveContact;
-    console.log("hhhhhh");
-    console.log(notification);
-    console.log("active");
-    console.log(active);
+    console.log("dummy");
+    console.log(dummycount);
+   
+      console.log(authCtx1.users);
+       authCtx1.adduser({name:"klklklk"});
+   
     if (active.email === notification.senderId) {
       const url =
         "https://backend-for-chat-app.herokuapp.com/messages/" +
@@ -189,10 +197,9 @@ useEffect(()=>{
           temparr[i].unread++;
         }
       }
-     console.log("auth");
-     console.log(authCtx.users);
+     
      props.setnotifyuser(temparr);
-     console.log(notification);
+  
 
     }
   };
@@ -240,9 +247,7 @@ useEffect(()=>{
     props.setindexfunc(-3);
   };
   const profilesectionhandler2 = () => {
-    console.log("dddddddddddddddddddddddddddd");
-    console.log(loggedInUser);
-    console.log(chatActiveContact);
+    
     props.setindexwithname({
       username: currentUser.username,
       firstName: currentUser.firstName,
@@ -259,7 +264,7 @@ const[image,setimage]=useState("https://cdn.pixabay.com/photo/2015/10/05/22/37/b
     axios
       .get(url)
       .then((result) => {
-        console.log(result.data);
+        
         
         setimage(`data:image/png;base64,${result.data}`);
       })
@@ -271,10 +276,7 @@ const[image,setimage]=useState("https://cdn.pixabay.com/photo/2015/10/05/22/37/b
       <div className={classes.content__header}>
         <div className={classes.blocks}>
           <div className={classes["current-chatting-user"]}>
-            <Avatar
-              isOnline="active"
-              image={image}
-            />
+           
             <div onClick={profilesectionhandler} style={{cursor:"pointer"}}>{props.nameofperson}</div>
             
           </div>

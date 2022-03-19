@@ -7,6 +7,7 @@ import ChatContent from "../chatsection/ChatContent";
 import Newuserprofile from "../userProfile/Newuserprofile";
 import Adduser from "./Adduser";
 import ThreeDots from "./ThreeDots";
+
 const ChatBody = () => {
   const [nameofperson, setnameofperson] = useState("");
   const [activeContact, setActiveContact] = useRecoilState(chatActiveContact);
@@ -45,10 +46,10 @@ const ChatBody = () => {
     }
   }, [index]);
 
-  console.log("INDEX");
-  console.log(index);
+  
   return (
     <div className={classes.main__chatbody}>
+     
       <ListofContacts
       setnotifyuser={setnotifyuser}
         setindexwithname={setindexwithname}
@@ -60,10 +61,12 @@ const ChatBody = () => {
         setindexfunc={setindexfunc}
         notifyuser={notifyuser}
       />
+     
       
       {index === -3 && <Newuserprofile curindex={index} user={indexwithname} />}
 
       {index !== -1 && index !== -2 && index !== -3 && (
+        
         <ChatContent
           notifyuser={notifyuser}
           setnotifyuser={setnotifyuser}
@@ -74,6 +77,7 @@ const ChatBody = () => {
           setindexwithname={setindexwithname}
           indexwithname={indexwithname}
         />
+       
       )}
 
       {index === -2 && (

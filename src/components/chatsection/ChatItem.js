@@ -9,10 +9,7 @@ import {
 const ChatItem = (props) => {
   const [tp,settp]=useState(1);
   const [activeContact, setActiveContact] = useRecoilState(chatActiveContact);
-  console.log("key");
-  console.log(activeContact.email);
-  console.log(props.sender);
-  console.log(props.unread);
+ 
   if (props.deletemsgid === props.id) {
   }
   let p = props.timestamp.toString().substr(11, 11);

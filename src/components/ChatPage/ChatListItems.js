@@ -39,20 +39,20 @@ const ChatListItems = (props) => {
       lastName: props.lastName,
     });
   };
-  console.log("image obtained");
-  console.log(props.image);
+  
   useEffect(()=>{
   var url = "https://backend-for-chat-app.herokuapp.com/photos/" + props.userName;
     axios
       .get(url)
       .then((result) => {
-        console.log(result.data);
+       
         
         setimage(`data:image/png;base64,${result.data}`);
       })
       .catch((err) => {console.log("ERROR IN GET")});
   },[props.userName])
-  
+  console.log("props");
+  console.log(props.onlinearray);
   return (
     <div
       className={`chatlist__item ${
@@ -61,7 +61,7 @@ const ChatListItems = (props) => {
     >
       <Avatar
         image={image}
-        isOnline={props.isOnline}
+        isOnline={props.onlinearray.length%2!==0?"active":" "}
       />
       
       <div className="userMeta" onClick={setindexfun}>
